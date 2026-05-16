@@ -510,16 +510,16 @@
         // TABELA DE LINKS DE PAGAMENTO POR VALOR TOTAL
         // ==========================================
         const LINKS_PAGAMENTO = {
-            "15.00": "https://mpago.la/2ZswfaT", //1x15
-            "30.00": "https://mpago.la/1jb7zk6", //2x15
-            "45.00": "https://mpago.la/2nkEPwM", //3x15
-            "60.00": "https://mpago.la/2k9xmgY", //4x15
-            "75.00": "https://mpago.la/1jBqeVT", //5x15
-            "90.00": "https://mpago.la/1qjNfCp", //6x15
-            "105.00": "https://mpago.la/1HAAx9b", //7x15
-            "120.00": "https://mpago.la/1KqMW6T", //8x15
-            "135.00": "https://mpago.la/2WobCRy", //9x15
-            "150.00": "https://mpago.la/1MWyHCz"  //10x15
+            "15.00": "62 981147479", //1x15
+            "30.00": "62981147479", //2x15
+            "45.00": "62981147479", //3x15
+            "60.00": "62981147479", //4x15
+            "75.00": "62981147479", //5x15
+            "90.00": "62981147479", //6x15
+            "105.00": "62 981147479", //7x15
+            "120.00": "62 981147479", //8x15
+            "135.00": "62 981147479", //9x15
+            "150.00": "62 981147479"  //10x15
         };
 
         // Link CSV de publicação da sua planilha que você informou
@@ -705,8 +705,8 @@
             textoWhatsapp += `📱 *WhatsApp:* ${whatsComprador}\n\n`;
             textoWhatsapp += `🔢 *Números Escolhidos:* ${numerosSelecionados.join(', ')}\n`;
             textoWhatsapp += `💰 *Valor Total:* R$ ${total.toFixed(2).replace('.', ',')}\n\n`;
-            textoWhatsapp += `🔗 *Link para Pagamento:* ${linkPagamentoExato}\n\n`;
-            textoWhatsapp += `Faça o pagamento mais rápido clicando no link de pagamento acima ☝️👆\n\n`;
+            textoWhatsapp += `🔗 *Pix para Pagamento:* ${linkPagamentoExato}\n\n`;
+            textoWhatsapp += `Pague com o Pix ☝️👆\n\n`;
             textoWhatsapp += `Por favor, nos enviar o comprovante para valide seu números!`;
 
             const textoCodificado = encodeURIComponent(textoWhatsapp);
