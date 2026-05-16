@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rifa Solidária Pro-Danilo</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f7f5f0;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 20px;
+            border: 1px solid #e0dbd1;
+        }
+
+        /* Cabeçalho */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px dashed #d1a153;
+            padding-bottom: 20px;
+        }
+
+        .logo-text {
+            font-size: 14px;
+            font-weight: bold;
+            color: #0d3b66;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #0d3b66;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            color: #d1a153;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        /* Seção de Prêmios */
+        .premios-container {
+            display: block;
+            margin-bottom: 30px;
+        }
+
+        .premio-card {
+            background: #faf8f5;
+            border: 1px solid #e6dfd3;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .badge {
+            background: #cc0000;
+            color: #fff;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .premio-titulo {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0d3b66;
+            margin-bottom: 5px;
+        }
+
+        .premio-detalhe {
+            font-size: 14px;
+            color: #555;
+            font-style: italic;
+        }
+
+        .premio-pix {
+            color: #008060;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* Grade de Números */
+        .grid-container {
+            margin: 30px auto;
+            max-width: 600px;
+        }
+
+        .grid-title {
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: #0d3b66;
+            margin-bottom: 15px;
+        }
+
+        .numeros-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .num-btn {
+            background: #ffffff;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            padding: 10px 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .num-btn:hover {
+            border-color: #0d3b66;
+            background: #f0f4f8;
+        }
+
+        .num-btn.selecionado {
+            background: #cc0000 !important;
+            border-color: #990000 !important;
+            color: #ffffff !important;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Informações de valores e pix */
+        .info-rifa {
+            text-align: center;
+            margin: 30px 0;
+            background: #f0f4f8;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #0d3b66;
+        }
+
+        .info-rifa p {
+            margin: 5px 0;
+            font-size: 15px;
+        }
+
+        .valor-destaque {
+            font-size: 18px;
+            font-weight: bold;
+            color: #d1a153;
+        }
+
+        .chave-pix {
+            font-weight: bold;
+            color: #0d3b66;
+            background: #e1ebf5;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* Botão Próximo Passo */
+        .acao-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-proximo {
+            background: #0d3b66;
+            color: #fff;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            transition: background 0.2s;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .btn-proximo:hover {
+            background: #092c4e;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 15px;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-title {
+            color: #0d3b66;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f0f4f8;
+            padding-bottom: 10px;
+        }
+
+        .modal-body {
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .modal-body p {
+            margin-bottom: 10px;
+        }
+
+        .numeros-escolhidos {
+            background: #faf8f5;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #e6dfd3;
+            font-weight: bold;
+            color: #cc0000;
+            letter-spacing: 1px;
+            word-wrap: break-word;
+        }
+
+        .valor-total {
+            font-size: 18px;
+            font-weight: bold;
+            color: #008060;
+            margin-top: 15px;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .btn-modal {
+            padding: 10px 20px;
+            font-size: 15px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn-voltar {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-voltar:hover {
+            background: #d5d5d5;
+        }
+
+        .btn-pagar {
+            background: #008060;
+            color: #fff;
+        }
+
+        .btn-pagar:hover {
+            background: #00664d;
+        }
+
+        /* Ajustes Responsivos */
+        @media (max-width: 600px) {
+            .numeros-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 6px;
+            }
+            .num-btn {
+                padding: 8px 0;
+                font-size: 14px;
+            }
+            h1 { font-size: 22px; }
+            h2 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Cabeçalho -->
+        <header>
+            <div class="logo-text">🤝 Rifa Solidária Pro-Danilo</div>
+            <h1>SORTEIO BENEFICENTE</h1>
+            <h2>EM PROL DE AJUDAR NOSSO AMIGO DANILO</h2>
+            <div class="subtitle">APÓS ACIDENTE DE MOTO - FORÇA DANILO!</div>
+        </header>
+
+        <!-- Seção de Prêmios -->
+        <section class="premios-container">
+            <div class="premio-card">
+                <span class="badge">1º PRÊMIO</span>
+                <div class="premio-titulo">*Sanduicheira Mondial S-18*</div>
+            </div>
+
+            <div class="premio-card">
+                <span class="badge">2º PRÊMIO</span>
+                <div class="premio-titulo">*Chaleira Elétrica Multilaser* 1.7L</div>
+            </div>
+
+            <div class="premio-card">
+                <span class="badge">3º PRÊMIO</span>
+                <div class="premio-titulo premio-pix">R$ 50,00 VIA PIX</div>
+                <div class="premio-detalhe">*PIX no valor de Cinquenta Reais*</div>
+            </div>
+        </section>
+
+        <!-- Grade de Números -->
+        <section class="grid-container">
+            <div class="grid-title">Selecione os seus números abaixo:</div>
+            <div class="numeros-grid" id="gridNumeros">
+                <!-- Números gerados via JS exatamente iguais aos da imagem (pulando os terminados em 4 e 8) -->
+            </div>
+        </section>
+
+        <!-- Informações de Rodapé -->
+        <section class="info-rifa">
+            <p class="valor-destaque">VALOR DA RIFA: R$ 15,00 <span style="font-size: 14px; color: #555; font-weight: normal;">(por número)</span></p>
+            <p><strong>DATA DO SORTEIO:</strong> Quando todos os números forem preenchidos</p>
+            <p><strong>PAGAMENTO VIA PIX CHAVE:</strong> <span class="chave-pix">62 981147479</span></p>
+        </section>
+
+        <!-- Ação Principal -->
+        <div class="acao-container">
+            <button class="btn-proximo" id="btnProximo">Próximo Passo</button>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação -->
+    <div class="modal-overlay" id="modalConfirmacao">
+        <div class="modal-content">
+            <div class="modal-title">Confirmação de Reserva</div>
+            <div class="modal-body">
+                <p>Você selecionou os seguintes números:</p>
+                <div class="numeros-escolhidos" id="modalNumeros">--</div>
+                <div class="valor-total" id="modalTotal">Total: R$ 0,00</div>
+                <p style="margin-top: 15px; font-size: 13px; color: #666;">
+                    Para concluir, realize o pagamento via PIX para a chave:<br>
+                    <strong>62 981147479</strong>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal btn-voltar" id="btnVoltar">Voltar</button>
+                <button class="btn-modal btn-pagar" id="btnPagar">Pagar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lógica do Sistema -->
+    <script>
+        // Array para guardar os números selecionados
+        let numerosSelecionados = [];
+        const valorPorNumero = 15.00;
+
+        // Elementos da interface
+        const gridNumeros = document.getElementById('gridNumeros');
+        const btnProximo = document.getElementById('btnProximo');
+        const modalConfirmacao = document.getElementById('modalConfirmacao');
+        const modalNumeros = document.getElementById('modalNumeros');
+        const modalTotal = document.getElementById('modalTotal');
+        const btnVoltar = document.getElementById('btnVoltar');
+        const btnPagar = document.getElementById('btnPagar');
+
+        // Renderiza os botões respeitando exatamente a imagem enviada.
+        // A imagem pula todos os números que terminam com 4 e com 8 (ex: não tem 4, 8, 14, 18, 24, 28...)
+        function gerarGrid() {
+            for (let i = 1; i <= 100; i++) {
+                let ultimoDigito = i % 10;
+                
+                // Ignora números terminados em 4 ou 8
+                if (ultimoDigito === 4 || ultimoDigito === 8) {
+                    continue;
+                }
+
+                // Cria o botão do número
+                const botao = document.createElement('button');
+                botao.classList.add('num-btn');
+                botao.innerText = i;
+                botao.type = 'button';
+
+                // Evento de clique para selecionar/desmarcar
+                botao.addEventListener('click', function() {
+                    if (numerosSelecionados.includes(i)) {
+                        // Se já estiver selecionado, remove da lista
+                        numerosSelecionados = numerosSelecionados.filter(num => num !== i);
+                        botao.classList.remove('selecionado');
+                    } else {
+                        // Se não estiver selecionado, adiciona na lista
+                        numerosSelecionados.push(i);
+                        botao.classList.add('selecionado');
+                    }
+                });
+
+                gridNumeros.appendChild(botao);
+            }
+        }
+
+        // Ação do botão Próximo Passo
+        btnProximo.addEventListener('click', function() {
+            if (numerosSelecionados.length === 0) {
+                alert('Por favor, selecione pelo menos um número antes de prosseguir.');
+                return;
+            }
+
+            // Ordena os números de forma crescente para exibir bonito no modal
+            numerosSelecionados.sort((a, b) => a - b);
+
+            // Injeta as informações no modal
+            modalNumeros.innerText = numerosSelecionados.join(', ');
+            
+            // Calcula o valor total
+            const total = numerosSelecionados.length * valorPorNumero;
+            modalTotal.innerText = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
+
+            // Exibe o modal mudando o display para flex
+            modalConfirmacao.style.display = 'flex';
+        });
+
+        // Ação de fechar o modal (Botão Voltar)
+        btnVoltar.addEventListener('click', function() {
+            modalConfirmacao.style.display = 'none';
+        });
+
+        // Ação do botão Pagar
+        btnPagar.addEventListener('click', function() {
+            const total = numerosSelecionados.length * valorPorNumero;
+            alert(`Reserva realizada com sucesso!
+
+Números: ${numerosSelecionados.join(', ')}
+Total: R$ ${total.toFixed(2).replace('.', ',')}
+
+Efetue o pagamento na chave PIX: 62 981147479 para validar sua participação.`);
+            modalConfirmacao.style.display = 'none';
+        });
+
+        // Inicializa a tabela ao carregar a página
+        gerarGrid();
+    </script>
+</body>
+</html>
