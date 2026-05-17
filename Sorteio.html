@@ -576,7 +576,7 @@
     <div class="modal-admin" id="modalAvisoLista">
         <div class="modal-content card-aviso">
             <h2>⚠️ Lista de Participantes Vazia</h2>
-            <p style="font-size: 0.95rem; color: #4a5568; margin-bottom: 20px; line-height: 1.5;">Por favor, cadastre a lista de participantes no Painel Admin antes de iniciar o Sorteio Oficial.</p>
+            <p style="font-size: 0.95rem; color: #4a5568; margin-bottom: 20px; line-height: 1.5;">Por favor, cadastre a lista de participantes no Painel Admin antes di iniciar o Sorteio Oficial.</p>
             <div class="modal-botoes" style="justify-content: center; gap: 15px;">
                 <button class="btn-fechar" onclick="cancelarAvisoLista()">Cancelar</button>
                 <button class="btn-prosseguir" onclick="prosseguirParaAdmin()">Cadastrar Lista</button>
@@ -648,18 +648,7 @@
 
         function cancelarAvisoLista() {
             fecharAvisoLista();
-            const btnTeste = document.getElementById('btnTeste');
-            
-            // Remove animação anterior se houver para resetar o ciclo
-            btnTeste.classList.remove('animar-gangorra');
-            
-            // Rola a página suavemente até o botão de teste
-            btnTeste.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            // Força um pequeno atraso para aplicar a animação de se mexer (gangorra)
-            setTimeout(() => {
-                btnTeste.classList.add('animar-gangorra');
-            }, 100);
+            executarSorteio(true);
         }
 
         function abrirAdmin() {
@@ -679,7 +668,7 @@
                 if (!linha.trim()) return;
 
                 const regex =(/^\s*(\d+)\s*[-\s]*([^:]+):(.*)$/);
-                const match = App.linhaMatched = linha.match(regex);
+                const match = linha.match(regex);
 
                 if (match) {
                     const numero = parseInt(match[1]);
@@ -694,7 +683,7 @@
             fecharAdmin();
         }
 
-        function executarSorteio(isTeste) {
+        function ejecutarSorteio(isTeste) {
             const totalInput = document.getElementById('totalNumeros');
             const qtdInput = document.getElementById('qtdSortear');
             const btnOficial = document.getElementById('btnOficial');
@@ -721,7 +710,7 @@
                 return;
             }
 
-            if (total <= 0 || quantidade <= 0) {
+            if (total <= 0 || quantity <= 0) {
                 alert('Os parâmetros numéricos informados devem ser maiores que zero.');
                 return;
             }
